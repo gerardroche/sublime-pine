@@ -1,0 +1,91 @@
+%YAML 1.2
+---
+name: Pine
+file_extensions:
+  - pine
+scope: source.pine
+
+variables:
+    identifier_regex: '[a-zA-Z_][a-zA-Z0-9_]*'
+
+contexts:
+  main:
+    - match: //.*
+      scope: comment.pine
+
+  #constants
+
+    - match: \b(true|false)\b
+      scope: constant.language.pine
+
+    - match: \b(open|high|low|close|volume|na|len|period|tikerid)\b
+      scope: constant.language.pine
+
+    - match: \b(monday|tuesday|wednesday|thursday|friday|saturday|sunday|dayofweek)\b
+      scope: constant.language.pine
+
+    - match: \b(line|histogram|cross|area|columns|circles)\b
+      scope: constant.language.pine
+
+    - match: \blocation\.(abovebar|belowbar|top|bottom|absolute)\b
+      scope: constant.language.pine
+
+    - match: \bshape\.(x(cross)?|(triangle|arrow|label)(up|down)|flag|circle|square|diamond)\b
+      scope: constant.language.pine
+
+    - match: \b(aqua|black|silver|gray|white|maroon|red|purple|fuchsia|green|lime|olive|yellow|navy|blue|teal|orange)\b
+      scope: constant.language.pine
+
+    - match: '#[a-fA-F0-9]{6}'
+      scope: support.constant.pine
+
+    - match: '\b([0-9]+)\b'
+      scope: constant.numeric.pine
+
+  # strings
+
+    - match: ''''
+      push: single-quoted-string
+    - match: '"'
+      push: double-quoted-string
+
+  # operators
+
+    - match: (\-|\+|\*|/|%)
+      scope: keyword.operator.arithmetic.pine
+    - match: (==|!=|<=|>=|<|>)
+      scope: keyword.operator.comparison.pine
+    - match: (\?|\:)
+      scope: keyword.operator.ternary.pine
+    - match: \b(and|or|not)\b
+      scope: keyword.operator.logical.pine
+    - match: "="
+      scope: keyword.operator.assignment.pine
+
+  # functions
+
+    - match: '\b(avg|bar(color|since)|bgcolor|change|cross|donchian|falling|fill|highest|iff|input|lowest|m(ax|in)|plot(arrow|bar|candle|char|shape|figure)?|rising|security|tostring|(e|s)ma|study|valuewhen)(?=\()'
+      captures:
+        1: support.function.pine
+
+    - match: '{{identifier_regex}}\s*(?=\=)'
+      scope: variable.parameter.pine
+
+    - match: '({{identifier_regex}})\(.*\)\s(=>)\s'
+      captures:
+        1: entity.name.function
+        2: keyword.operator.assignment.pine
+
+  single-quoted-string:
+    - meta_scope: string.quoted.single.pine
+    - match: \\.
+      scope: constant.character.escape.pine
+    - match: ''''
+      pop: true
+
+  double-quoted-string:
+    - meta_scope: string.quoted.double.pine
+    - match: \\.
+      scope: constant.character.escape.pine
+    - match: '"'
+      pop: true

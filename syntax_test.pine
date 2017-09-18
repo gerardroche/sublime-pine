@@ -1,0 +1,163 @@
+// SYNTAX TEST "Packages/Pine/Pine.sublime-syntax"
+
+    // x
+//  ^^^^ comment
+
+study("Ichimoku", overlay=true, precision=8)
+// ^ support.function
+//    ^^^^^^^^^^ string.quoted.double
+//                ^^^^^^^ variable.parameter
+//                       ^ keyword.operator.assignment
+//                        ^^^^ constant.language
+//                              ^^^^^^^^^ variable.parameter
+//                                       ^ keyword.operator.assignment
+//                                        ^ constant.numeric
+
+// Tenkan Sen       Turning Line        (highest high + lowest low)/2 for the last 9 periods
+// Kijun Sen        Standard Line       (highest high + lowest low)/2 for the past 26 periods
+// Chikou Span      Lagging Line        current closing price time-shifted backwards (into the past) 26 periods
+// Senkou Span A    1st Leading Line    (tenkan sen + kijun sen)/2 time-shifted forwards (into the future) 26 periods
+// Senkou Span B    2nd Leading Line    (highest high + lowest low)/2 for 52 periods time-shifted forwards (into the future) 26 periods
+
+// Options
+tenkan_sen_periods = input(9, minval=1, title="Tenkan Sen Periods (Turning Line)")
+// ^^^^^^^^^^^^^^^ variable
+//                 ^ keyword.operator.assignment
+//                   ^^^^^ support.function
+//                         ^ constant.numeric
+//                            ^^^^^^ variable.parameter
+//                                  ^ keyword.operator.assignment
+//                                   ^ constant.numeric
+//                                      ^^^^^ variable.parameter
+//                                           ^ keyword.operator.assignment
+//                                            ^^^ string
+kijun_sen_periods = input(26, minval=1, title="Kijun Sen Periods (Standard Line)")
+senkou_span_b_periods = input(52, minval=1, title="Senkou Span B Periods (2nd Leading Line)")
+displacement_periods = input(26, minval=1, title="Displacement Periods (Time Shift)")
+
+// Functions
+// Donchian Channel
+// highest high and the lowest low of the last n periods
+// https://en.wikipedia.org/wiki/Donchian_channel
+donchian(len) => avg(lowest(len), highest(len))
+// ^^^^^ support.function
+//       ^^^ constant.language
+//            ^^ keyword.operator
+//               ^^^ support.function
+//                   ^^^^^^ support.function
+//                          ^^^ constant.language
+//                                ^^^^^^^ support.function
+//                                        ^^^ constant.language
+
+// Calculations
+tenkan_sen = donchian(tenkan_sen_periods)
+// ^ variable.parameter
+//         ^ keyword.operator.assignment
+//           ^ support.function
+kijun_sen = donchian(kijun_sen_periods)
+senkou_span_a = avg(tenkan_sen, kijun_sen)
+senkou_span_b = donchian(senkou_span_b_periods)
+
+study('Ichimoku')
+//    ^^^^^^^^^^ string.quoted.single
+
+// Plot Tenkan Sen
+plot(tenkan_sen, title="Tenkan Sen (Turning Line)", color=#00FF00, transp=0)
+//                                                  ^^^^^ variable.parameter
+//                                                       ^ keyword.operator.assignment
+//                                                        ^^^^^^^ support.constant
+
+// Kijun Sen
+plot(kijun_sen, title="Kijun Sen (Standard Line)", color=#FF0000, transp=0)
+
+// Chikou Span
+plot(close, offset = -displacement_periods, title="Chikou Span (Lagging Line)", color=#FF00FF, transp=0)
+//   ^^^^^ constant.language
+
+// Plot Senkou Span A
+senkou_span_a_plot = plot(senkou_span_a, offset=displacement_periods, color=#FFFFFF, title="Senkou Span A (1st Leading Line)", transp=0)
+
+// Plot Senkou Span B
+senkou_span_b_plot = plot(senkou_span_b, offset=displacement_periods, color=#FFFF00, title="Senkou Span B (2nd Leading Line)", transp=0)
+
+// Plot Bullish Kumo colour (if bullish)
+is_bullish_kumo = senkou_span_a >= senkou_span_b
+//                              ^^ keyword.operator.comparison
+bullish_kumo_senkou_span_a = plot(is_bullish_kumo ? senkou_span_a : na, editable=false, transp=100, style=areabr, offset=displacement_periods, color=#FFFFFF)
+//                                                ^ keyword.operator.ternary
+//                                                                ^ keyword.operator
+//                                                                  ^^ constant.language
+//                                                                              ^ keyword.operator.assignment
+//                                                                               ^^^^^ constant.language
+//                                                                                            ^ keyword.operator.assignment
+//                                                                                             ^^^ constant.numeric
+bullish_kumo_senkou_span_b = plot(is_bullish_kumo ? senkou_span_b : na, editable=false, transp=100, style=areabr, offset=displacement_periods, color=#FFFF00)
+fill(bullish_kumo_senkou_span_a, bullish_kumo_senkou_span_b, color=#FFFF00, transp=70, title="Bullish Kumo (Cloud)")
+// ^ support.function
+
+// Plot Bearish Kumo colour (if bearish)
+is_bearish_kumo = senkou_span_a <= senkou_span_b
+bearish_kumo_senkou_span_a = plot(is_bearish_kumo ? senkou_span_a : na, editable=false, transp=100, style=areabr, offset=displacement_periods, color=#FFFFFF)
+bearish_kumo_senkou_span_b = plot(is_bearish_kumo ? senkou_span_b : na, editable=false, transp=100, style=areabr, offset=displacement_periods, color=#FFFF00)
+fill(bearish_kumo_senkou_span_b, bearish_kumo_senkou_span_a, color=#FF0000, transp=70, title="Bearish Kumo (Cloud)")
+
+is_day_equal_to(day) => dayofweek == day and close ? 1 : 0
+// ^^^^^^^^^^^^ entity.name.function
+//                   ^^ keyword.operator.assignment
+//                      ^^^^^^^^^ constant.language
+//                                ^^ keyword.operator.comparison
+//                                       ^^^ keyword.operator.logical
+//                                           ^^^^^ constant.language
+//                                                 ^ keyword.operator.ternary
+//                                                   ^ constant.numeric
+//                                                     ^ keyword.operator
+//                                                       ^ constant.numeric
+
+is_mon = is_day_equal_to(monday)
+// ^ variable
+//     ^ keyword.operator.assignment
+//                       ^^^^^^ constant.language
+is_tue = is_day_equal_to(tuesday)
+//                       ^^^^^^^ constant.language
+is_wed = is_day_equal_to(wednesday)
+//                       ^^^^^^^^^ constant.language
+is_thu = is_day_equal_to(thursday)
+//                       ^^^^^^^^ constant.language
+is_fri = is_day_equal_to(friday)
+//                       ^^^^^^ constant.language
+is_sat = is_day_equal_to(saturday)
+//                       ^^^^^^^^ constant.language
+is_sun = is_day_equal_to(sunday)
+//                       ^^^^^^ constant.language
+
+plotchar(display_mon, char="M", color=white, location=location.bottom)
+// ^ support.function
+//                                    ^^^^^ constant.language
+//                                                    ^^^^^^^^^^^^^^^ constant.language
+
+m_kijun_sen = security(tickerid, "1M", avg(lowest(26), highest(26)))
+//            ^^^^^^^^ support.function
+//                                     ^^^ support.function
+//                                         ^^^^^^ support.function
+//                                                ^^ constant.numeric
+//                                                     ^^^^^^^ support.function
+//                                                             ^^ constant.numeric
+
+is_pivot_low = low[5] < low[6] and low[5] < low[7] and low[5] < low[8] and low[5] < low[9] and low[5] < low[4] and low[5] < low[3] and low[5] < low[2] and low[5] < low[1]
+//             ^^^ constant.language
+//                ^ -constant
+//                 ^ constant.numeric
+//                  ^ -constant
+
+
+fast = 12, slow = 26
+fastMA = ema(close, fast)
+//       ^^^ support.function
+//           ^^^^^ constant.language
+slowMA = ema(close, slow)
+macd = fastMA - slowMA
+signal = sma(macd, 9)
+plot(macd, color=blue)
+//               ^^^^ constant.language
+plot(signal, color=orange)
+//                 ^^^^^^ constant.language
