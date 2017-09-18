@@ -2,6 +2,8 @@
 
 [Pine programming language](https://www.tradingview.com/scripts) support.
 
+[![Minimum Sublime Version](https://img.shields.io/badge/sublime-%3E%3D%203.0-brightgreen.svg?style=flat-square)](https://sublimetext.com) [![Latest Stable Version](https://img.shields.io/github/tag/gerardroche/sublime-pine.svg?style=flat-square&label=stable)](https://github.com/gerardroche/sublime-pine/tags) [![GitHub stars](https://img.shields.io/github/stars/gerardroche/sublime-pine.svg?style=flat-square)](https://github.com/gerardroche/sublime-pine/stargazers) [![Author](https://img.shields.io/badge/twitter-gerardroche-blue.svg?style=flat-square)](https://twitter.com/gerardroche)
+
 ![Screenshot](screenshot.png)
 
 The color scheme in the screenshot is [MonokaiFree](https://github.com/gerardroche/sublime-monokai-free).
