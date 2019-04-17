@@ -18,19 +18,58 @@ contexts:
     - match: \b(true|false)\b
       scope: constant.language.pine
 
-    - match: \b(open|high|low|close|volume|na|len|period|tikerid)\b
+    - match: \b(bool|float|integer|string)\b
+      scope: constant.language.pine
+
+    - match: \b(time|timenow|year|month|weekofyear|dayofmonth|dayofweek|hour|minute|second|interval|isdaily|isdwm|isintraday|ismonthly|isweekly)\b
+      scope: constant.language.pine
+
+    - match: \b(open|high|low|close|volume|na|period|tikerid|source|symbol)\b
+      scope: constant.language.pine
+
+    - match: \b(accdist|area|areabr|hl(2|c3)|ohlc4)\b
+      scope: constant.language.pine
+
+    - match: \badjustment\.(dividends|none|splits)\b
       scope: constant.language.pine
 
     - match: \b(monday|tuesday|wednesday|thursday|friday|saturday|sunday|dayofweek)\b
       scope: constant.language.pine
 
-    - match: \b(line|histogram|cross|area|columns|circles)\b
+    - match: \b(line|stepline|histogram|cross[^\(]|area|columns|circles)\b
+      scope: constant.language.pine
+
+    - match: \b(solid|dotted|dashed)\b
+      scope: constant.language.pine
+
+    - match: \b(session|session.(extended|regular))\b
+      scope: constant.language.pine
+
+    - match: \bscale.(left|none|right)\b
+      scope: constant.language.pine
+
+    - match: \bbarmerge\.(gaps_(off|on)|lookahead_(off|on))\b
+      scope: constant.language.pine
+
+    - match: \bbarstate\.is(confirmed|first|history|last|new|realtime)\b
+      scope: constant.language.pine
+
+    - match: \bcurrency\.(AUD|CAD|CHF|EUR|GBP|HKD|JPY|NOK|NONE|NZD|RUB|SEK|SGD|TRY|USD|ZAR)\b
       scope: constant.language.pine
 
     - match: \blocation\.(abovebar|belowbar|top|bottom|absolute)\b
       scope: constant.language.pine
 
     - match: \bshape\.(x(cross)?|(triangle|arrow|label)(up|down)|flag|circle|square|diamond)\b
+      scope: constant.language.pine
+
+    - match: \bsize\.(auto|huge|large|normal|small|tiny)\b
+      scope: constant.language.pine
+
+    - match: \bstrategy\.(cash|closedtrades|commission\.(cash_per_contract|cash_per_order|percent)|direction\.(all|long|short)|equity|eventrades|fixed|grossloss|grossprofit|initial_capital|long|losstrades|max_contracts_held_all|max_contracts_held_long|max_contracts_held_short|max_drawdown|netprofit|oca\.(cancel|none|reduce)|openprofit|opentrades|percent_of_equity|position_avg_price|position_entry_name|position_size|short|wintrades)\b
+      scope: constant.language.pine
+
+    - match: \bsyminfo\.(mintick|pointvalue|prefix|root|session|timezone)\b
       scope: constant.language.pine
 
     - match: \b(aqua|black|silver|gray|white|maroon|red|purple|fuchsia|green|lime|olive|yellow|navy|blue|teal|orange)\b
@@ -53,7 +92,7 @@ contexts:
 
     - match: (\-|\+|\*|/|%)
       scope: keyword.operator.arithmetic.pine
-    - match: (==|!=|<=|>=|<|>)
+    - match: (==|!=|<=|>=|<|>|\:=)
       scope: keyword.operator.comparison.pine
     - match: (\?|\:)
       scope: keyword.operator.ternary.pine
@@ -64,14 +103,14 @@ contexts:
 
   # functions
 
-    - match: '\b(avg|bar(color|since)|bgcolor|change|cross|donchian|falling|fill|highest|iff|input|lowest|m(ax|in)|plot(arrow|bar|candle|char|shape|figure)?|rising|security|tostring|(e|s)ma|study|valuewhen)(?=\()'
+    - match: '\b(alertcondition|a(bs|cos|lma|sin|tan|tr|vg)|bar(color|since)|bgcolor|cci|ceil|change|cog|color|correlation|cos|cross(over|under)?|cum|dayof(month|week)|dev|(e|s)ma|exp|falling|fill|fixnan|floor|heikinashi|highest(bars)?|hline|iff|input|kagi|linebreak|linreg|log(10)?|lowest(bars)?|macd|m(ax|in)|minute|mom|month|n(a|z)|offset|percentile_linear_(interpolation|nearest_rank)|percentrank|pivot(high|low)|plot(arrow|bar|candle|char|shape|figure)?|pow|renko|rising|r(ma|oc|si)|round|sar|second|security|sign|sin|sqrt|stdev|stoch|strategy|strategy\.(cancel|cancel_all|close|close_all|entry|exit|order)|study|sum|swma|tan|tickerid|time(stamp)?|tostring|tr|tsi|valuewhen|variance|v(wap|wma)|weekofyear|wma|year|{{identifier_regex}})(?=\()'
       captures:
         1: support.function.pine
 
-    - match: '{{identifier_regex}}\s*(?=\=)'
+    - match: '{{identifier_regex}}\s*(?=:?\=)'
       scope: variable.parameter.pine
 
-    - match: '({{identifier_regex}})\(.*\)\s(=>)\s'
+    - match: ('({{identifier_regex}})\(.*\)\s(=>)\s'|if|else)
       captures:
         1: entity.name.function
         2: keyword.operator.assignment.pine
