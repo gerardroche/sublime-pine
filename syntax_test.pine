@@ -41,13 +41,10 @@ displacement_periods = input(26, minval=1, title="Displacement Periods (Time Shi
 // https://en.wikipedia.org/wiki/Donchian_channel
 donchian(len) => avg(lowest(len), highest(len))
 // ^^^^^ support.function
-//       ^^^ constant.language
 //            ^^ keyword.operator
 //               ^^^ support.function
 //                   ^^^^^^ support.function
-//                          ^^^ constant.language
 //                                ^^^^^^^ support.function
-//                                        ^^^ constant.language
 
 // Calculations
 tenkan_sen = donchian(tenkan_sen_periods)
@@ -102,8 +99,8 @@ bearish_kumo_senkou_span_b = plot(is_bearish_kumo ? senkou_span_b : na, editable
 fill(bearish_kumo_senkou_span_b, bearish_kumo_senkou_span_a, color=#FF0000, transp=70, title="Bearish Kumo (Cloud)")
 
 is_day_equal_to(day) => dayofweek == day and close ? 1 : 0
-// ^^^^^^^^^^^^ entity.name.function
-//                   ^^ keyword.operator.assignment
+// ^^^^^^^^^^^^ support.function
+//                   ^^ keyword.operator
 //                      ^^^^^^^^^ constant.language
 //                                ^^ keyword.operator.comparison
 //                                       ^^^ keyword.operator.logical
