@@ -2,7 +2,7 @@
 
 [Pine programming language](https://www.tradingview.com/scripts) support.
 
-[![Minimum Sublime Version](https://img.shields.io/badge/sublime-%3E%3D%203.0-brightgreen.svg?style=flat-square)](https://sublimetext.com) [![Latest Version](https://img.shields.io/github/tag/gerardroche/sublime-pine.svg?style=flat-square&label=version)](https://github.com/gerardroche/sublime-pine/tags) [![GitHub stars](https://img.shields.io/github/stars/gerardroche/sublime-pine.svg?style=flat-square)](https://github.com/gerardroche/sublime-pine/stargazers) [![Author](https://img.shields.io/badge/twitter-gerardroche-blue.svg?style=flat-square)](https://twitter.com/gerardroche)
+[![Minimum Sublime Version](https://img.shields.io/badge/sublime-%3E%3D%203.0-brightgreen.svg?style=flat-square)](https://sublimetext.com) [![Latest Version](https://img.shields.io/github/tag/gerardroche/sublime-pine.svg?style=flat-square&label=version)](https://github.com/gerardroche/sublime-pine/tags) [![GitHub stars](https://img.shields.io/github/stars/gerardroche/sublime-pine.svg?style=flat-square)](https://github.com/gerardroche/sublime-pine/stargazers)
 
 ![Screenshot](screenshot.png)
 
