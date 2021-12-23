@@ -8,7 +8,21 @@
 
 The color scheme in the screenshot is [MonokaiFree](https://github.com/gerardroche/sublime-monokai-free).
 
-## INSTALLATION
+## Installation
+
+### Package Control installation
+
+The preferred method of installation is [Package Control](https://packagecontrol.io/packages/Pine).
+
+`Ctrl/Command + Shift + P` to open the Command Palette
+
+Select `Package Control: Install Package`
+
+Search for `Pine`
+
+Press `Enter`
+
+Go to `Menu > Preferences > Color Scheme...` and select Pine.
 
 ### Manual installation
 
@@ -18,6 +32,6 @@ Close Sublime Text then download or clone this repository to a directory named `
 * OSX: `git clone https://github.com/gerardroche/sublime-pine.git ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/Pine`
 * Windows: `git clone https://github.com/gerardroche/sublime-pine.git %APPDATA%\Sublime/ Text/ 3/Packages/Pine`
 
-## LICENSE
+## License
 
 Released under the [BSD 3-Clause License](LICENSE).
