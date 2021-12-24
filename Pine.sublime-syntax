@@ -13,15 +13,8 @@ contexts:
     - match: //.*
       scope: comment.pine
 
-  #constants
-
-    - match: \b(var|varip)\b
-      scope: constant.language.pine
-
-    - match: \b(true|false)\b
-      scope: constant.language.pine
-
-    - match: \b(bool|float|integer|string)\b
+  #constant:
+    - match: \b(bool|true|false)\b
       scope: constant.language.pine
 
     - match: \b(time|timenow|year|month|weekofyear|dayofmonth|dayofweek|hour|minute|second|interval|isdaily|isdwm|isintraday|ismonthly|isweekly)\b
@@ -84,16 +77,27 @@ contexts:
     - match: '\b([0-9]+)\b'
       scope: constant.numeric.pine
 
-  # strings
+    - match: \b(int)\b
+      scope: constant.numeric.integer.pine
 
+    - match: \b(float)\b
+      scope: constant.numeric.float.pine      
+
+  # var
+    - match: \b(var|varip)\b
+      scope: variable.other.pine
+
+  # strings
     - match: ''''
       push: single-quoted-string
     - match: '"'
       push: double-quoted-string
+    - match: \b(string)\b
+      scope: string.pine
 
   # operators
 
-    - match: (\-|\+|\*|/|%|*=|+=|-=|/=)
+    - match: (\-|\+|\*|\/|\%|\*=|\+=|\-=|\/=)
       scope: keyword.operator.arithmetic.pine
     - match: (==|!=|<=|=>|>=|<|>|\:=|%=)
       scope: keyword.operator.comparison.pine
@@ -103,14 +107,13 @@ contexts:
       scope: keyword.operator.logical.pine
     - match: "="
       scope: keyword.operator.assignment.pine
-
-  # conditional & loops
-    - match: (|if|else|for|for...in|while)
-      scope: keyword.control.conditional.pine
-
-  # controls
+      
+  # control
     - match: \b(export|import|series|simple|switch|)\b
       scope: keyword.control.import.pine
+
+    - match: (|if|else|for|for...in|while)
+      scope: keyword.control.conditional.pine
 
   # functions
 
