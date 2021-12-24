@@ -15,6 +15,9 @@ contexts:
 
   #constants
 
+    - match: \b(var|varip)\b
+      scope: constant.language.pine
+
     - match: \b(true|false)\b
       scope: constant.language.pine
 
@@ -24,7 +27,7 @@ contexts:
     - match: \b(time|timenow|year|month|weekofyear|dayofmonth|dayofweek|hour|minute|second|interval|isdaily|isdwm|isintraday|ismonthly|isweekly)\b
       scope: constant.language.pine
 
-    - match: \b(open|high|low|close|volume|na|period|tikerid|source|symbol)\b
+    - match: \b(open|high|low|close|volume|na|period|tickerid|source|symbol)\b
       scope: constant.language.pine
 
     - match: \b(accdist|area|areabr|hl(2|c3)|ohlc4)\b
@@ -101,12 +104,12 @@ contexts:
     - match: "="
       scope: keyword.operator.assignment.pine
 
-  # conditional & loop
-    - match: (|if|else|for|for...in)
+  # conditional & loops
+    - match: (|if|else|for|for...in|while)
       scope: keyword.control.conditional.pine
 
-  # control
-    - match: \b(export|import)\b
+  # controls
+    - match: \b(export|import|series|simple|switch|)\b
       scope: keyword.control.import.pine
 
   # functions
