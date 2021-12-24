@@ -92,7 +92,7 @@ contexts:
 
     - match: (\-|\+|\*|/|%|*=|+=|-=|/=)
       scope: keyword.operator.arithmetic.pine
-    - match: (==|!=|<=|=>|<|>|\:=|%=|>=)
+    - match: (==|!=|<=|=>|>=|<|>|\:=|%=)
       scope: keyword.operator.comparison.pine
     - match: (\?|\:)
       scope: keyword.operator.ternary.pine
@@ -100,6 +100,14 @@ contexts:
       scope: keyword.operator.logical.pine
     - match: "="
       scope: keyword.operator.assignment.pine
+
+  # conditional & loop
+    - match: (|if|else|for|for...in)
+      scope: keyword.control.conditional.pine
+
+  # control
+    - match: \b(export|import)\b
+      scope: keyword.control.import.pine
 
   # functions
 
@@ -110,7 +118,7 @@ contexts:
     - match: '{{identifier_regex}}\s*(?=:?\=)'
       scope: variable.parameter.pine
 
-    - match: ('({{identifier_regex}})\(.*\)\s(=>)\s'|if|else)
+    - match: ('({{identifier_regex}})\(.*\)\s(=>)\s')
       captures:
         1: entity.name.function
         2: keyword.operator.assignment.pine
