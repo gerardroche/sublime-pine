@@ -90,9 +90,9 @@ contexts:
 
   # operators
 
-    - match: (\-|\+|\*|/|%)
+    - match: (\-|\+|\*|/|%|*=|+=|-=|/=)
       scope: keyword.operator.arithmetic.pine
-    - match: (==|!=|<=|>=|<|>|\:=)
+    - match: (==|!=|<=|=>|<|>|\:=|%=|>=)
       scope: keyword.operator.comparison.pine
     - match: (\?|\:)
       scope: keyword.operator.ternary.pine
