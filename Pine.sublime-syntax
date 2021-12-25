@@ -17,7 +17,10 @@ contexts:
     - match: \b(bool|true|false)\b
       scope: constant.language.pine
 
-    - match: \b(time|timenow|year|month|weekofyear|dayofmonth|dayofweek|hour|minute|second|interval|isdaily|isdwm|isintraday|ismonthly|isweekly)\b
+    - match: \b(time|timenow|year|month|weekofyear|dayofmonth|hour|minute|second|interval|isdaily|isdwm|isintraday|ismonthly|isweekly)\b
+      scope: constant.language.pine
+
+    - match: \b(open|high|low|close|hl2|hlc3|hlcc4|volume|na|period|tickerid|source|symbol)\b
       scope: constant.language.pine
 
     - match: \b(open|high|low|close|volume|na|period|tickerid|source|symbol)\b
@@ -26,10 +29,13 @@ contexts:
     - match: \b(accdist|area|areabr|hl(2|c3)|ohlc4)\b
       scope: constant.language.pine
 
-    - match: \badjustment\.(dividends|none|splits)\b
+    - match: \b(adjustment)\.(dividends|none|splits)\b
       scope: constant.language.pine
 
-    - match: \b(monday|tuesday|wednesday|thursday|friday|saturday|sunday|dayofweek)\b
+    - match: \b(alert)\.(freq_all|freq_once_per_bar|freq_once_per_bar_close)\b
+      scope: constant.language.pine
+
+    - match: \b(dayofweek|dayofweek.(monday|tuesday|wednesday|thursday|friday|saturday|sunday))\b
       scope: constant.language.pine
 
     - match: \b(line|stepline|histogram|cross[^\(]|area|columns|circles)\b
@@ -38,22 +44,42 @@ contexts:
     - match: \b(solid|dotted|dashed)\b
       scope: constant.language.pine
 
+    - match: \b(bar_index)\b
+      scope: constant.language.pine
+
     - match: \b(session|session.(extended|regular))\b
       scope: constant.language.pine
 
-    - match: \bscale.(left|none|right)\b
+    - match: \b(scale).(left|none|right)\b
       scope: constant.language.pine
 
-    - match: \bbarmerge\.(gaps_(off|on)|lookahead_(off|on))\b
+    - match: \b(barmerge)\.(gaps_(off|on)|lookahead_(off|on))\b
       scope: constant.language.pine
 
-    - match: \bbarstate\.is(confirmed|first|history|last|new|realtime)\b
+    - match: \b(barstate)\.is(confirmed|first|history|last|new|realtime|islastconfirmedhistory)\b
       scope: constant.language.pine
 
-    - match: \bcurrency\.(AUD|CAD|CHF|EUR|GBP|HKD|JPY|NOK|NONE|NZD|RUB|SEK|SGD|TRY|USD|ZAR)\b
+    - match: \b(box)\.(all)\b
       scope: constant.language.pine
 
-    - match: \blocation\.(abovebar|belowbar|top|bottom|absolute)\b
+    - match: \b(currency)\.(AUD|CAD|CHF|EUR|GBP|HKD|JPY|NOK|NONE|NZD|RUB|SEK|SGD|TRY|USD|ZAR)\b
+      scope: constant.language.pine
+
+    - match: \b(display)\.(all|none)\b
+      scope: constant.language.pine
+
+    - match: \b(earnings)\.(actual|estimate|standardized)\b
+      scope: constant.language.pine
+
+    - match: \b(extend)\.(both|left|none|right)\b
+
+    - match: \b(location)\.(abovebar|belowbar|top|bottom|absolute)\b
+      scope: constant.language.pine
+
+    - match: \b(hline.style)\_(|dashed|dotted|solid)\b
+      scope: constant.language.pine
+
+    - match: \b(format)\.(inherit|mintick|percent|price|volume)\b
       scope: constant.language.pine
 
     - match: \bshape\.(x(cross)?|(triangle|arrow|label)(up|down)|flag|circle|square|diamond)\b
@@ -68,7 +94,10 @@ contexts:
     - match: \bsyminfo\.(mintick|pointvalue|prefix|root|session|timezone)\b
       scope: constant.language.pine
 
-    - match: \b(aqua|black|silver|gray|white|maroon|red|purple|fuchsia|green|lime|olive|yellow|navy|blue|teal|orange)\b
+    - match: \b(color)\.(aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow)\b
+      scope: constant.language.pine
+
+    - match: \b(dividends)\.(gross|net)\b
       scope: constant.language.pine
 
     - match: '#[a-fA-F0-9]{6}'
@@ -81,7 +110,7 @@ contexts:
       scope: constant.numeric.integer.pine
 
     - match: \b(float)\b
-      scope: constant.numeric.float.pine      
+      scope: constant.numeric.float.pine   
 
   # var
     - match: \b(var|varip)\b
