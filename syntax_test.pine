@@ -110,27 +110,27 @@ is_day_equal_to(day) => dayofweek == day and close ? 1 : 0
 //                                                     ^ keyword.operator
 //                                                       ^ constant.numeric
 
-is_mon = is_day_equal_to(monday)
+is_mon = is_day_equal_to(dayofweek.monday)
 // ^ variable
 //     ^ keyword.operator.assignment
-//                       ^^^^^^ constant.language
-is_tue = is_day_equal_to(tuesday)
-//                       ^^^^^^^ constant.language
-is_wed = is_day_equal_to(wednesday)
 //                       ^^^^^^^^^ constant.language
-is_thu = is_day_equal_to(thursday)
-//                       ^^^^^^^^ constant.language
-is_fri = is_day_equal_to(friday)
-//                       ^^^^^^ constant.language
-is_sat = is_day_equal_to(saturday)
-//                       ^^^^^^^^ constant.language
-is_sun = is_day_equal_to(sunday)
-//                       ^^^^^^ constant.language
+is_tue = is_day_equal_to(dayofweek.tuesday)
+//                       ^^^^^^^^^ constant.language
+is_wed = is_day_equal_to(dayofweek.wednesday)
+//                       ^^^^^^^^^ constant.language
+is_thu = is_day_equal_to(dayofweek.thursday)
+//                       ^^^^^^^^^ constant.language
+is_fri = is_day_equal_to(dayofweek.friday)
+//                       ^^^^^^^^^ constant.language
+is_sat = is_day_equal_to(dayofweek.saturday)
+//                       ^^^^^^^^^ constant.language
+is_sun = is_day_equal_to(dayofweek.sunday)
+//                       ^^^^^^^^^ constant.language
 
-plotchar(display_mon, char="M", color=white, location=location.bottom)
+plotchar(display_mon, char="M", color=color.white, location=location.bottom)
 // ^ support.function
-//                                    ^^^^^ constant.language
-//                                                    ^^^^^^^^^^^^^^^ constant.language
+//                                    ^^^^^^^^^^^ constant.language
+//                                                          ^^^^^^^^^^^^^^^ constant.language
 
 m_kijun_sen = security(tickerid, "1M", avg(lowest(26), highest(26)))
 //            ^^^^^^^^ support.function
@@ -154,7 +154,7 @@ fastMA = ema(close, fast)
 slowMA = ema(close, slow)
 macd = fastMA - slowMA
 signal = sma(macd, 9)
-plot(macd, color=blue)
-//               ^^^^ constant.language
-plot(signal, color=orange)
-//                 ^^^^^^ constant.language
+plot(macd, color=color.blue)
+//               ^^^^^^^^^^ constant.language
+plot(signal, color=color.orange)
+//                 ^^^^^^^^^^^^ constant.language
