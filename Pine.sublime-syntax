@@ -13,27 +13,53 @@ contexts:
     - match: //.*
       scope: comment.pine
 
-  #constants
-
-    - match: \b(true|false)\b
+  #constant:
+    - match: \b(bool|true|false)\b
       scope: constant.language.pine
 
-    - match: \b(bool|float|integer|string)\b
+    - match: \b(timenow|year|month|weekofyear|dayofmonth|hour|minute|second|interval|isdaily|isdwm|isintraday|ismonthly|isweekly)\b
       scope: constant.language.pine
 
-    - match: \b(time|timenow|year|month|weekofyear|dayofmonth|dayofweek|hour|minute|second|interval|isdaily|isdwm|isintraday|ismonthly|isweekly)\b
+    - match: \b(time)\_(close|tradingday)\b
       scope: constant.language.pine
 
-    - match: \b(open|high|low|close|volume|na|period|tikerid|source|symbol)\b
+    - match: \b(timeframe)\.(isdaily|isdwm|isintraday|isminutes|ismonthly|isseconds|isweekly|multiplier|period)\b
+      scope: constant.language.pine
+
+    - match: \b(open|high|low|close|hl2|hlc3|hlcc4|volume|na|period|tickerid|source|symbol)\b
+      scope: constant.language.pine
+
+    - match: \b(xloc.bar)\.(index|time)\b
+      scope: constant.language.pine
+
+    - match: \b(yloc)\.(abovebar|belowbar|price)\b
       scope: constant.language.pine
 
     - match: \b(accdist|area|areabr|hl(2|c3)|ohlc4)\b
       scope: constant.language.pine
 
-    - match: \badjustment\.(dividends|none|splits)\b
+    - match: \b(table.all)\b
       scope: constant.language.pine
 
-    - match: \b(monday|tuesday|wednesday|thursday|friday|saturday|sunday|dayofweek)\b
+    - match: \b(text)\.(align|wrap)\_(bottom|center|left|right|top|auto|none)\b
+      scope: constant.language.pine
+
+    - match: \b(ta)\.(accdist|iii|nvi|obv|pvi|pvt|tr|vwap|wad|wvad)\b
+      scope: constant.language.pine
+
+    - match: \b(adjustment)\.(dividends|none|splits)\b
+      scope: constant.language.pine
+
+    - match: \b(splits)\.(denominator|numerator)\b
+      scope: constant.language.pine
+
+    - match: \b(position)\.(bottom|middle|top)\_(center|left|right)\b
+      scope: constant.language.pine
+
+    - match: \b(alert)\.(freq_all|freq_once_per_bar|freq_once_per_bar_close)\b
+      scope: constant.language.pine
+
+    - match: \b(dayofweek|dayofweek.(monday|tuesday|wednesday|thursday|friday|saturday|sunday))\b
       scope: constant.language.pine
 
     - match: \b(line|stepline|histogram|cross[^\(]|area|columns|circles)\b
@@ -42,37 +68,90 @@ contexts:
     - match: \b(solid|dotted|dashed)\b
       scope: constant.language.pine
 
-    - match: \b(session|session.(extended|regular))\b
+    - match: \b(bar_index)\b
       scope: constant.language.pine
 
-    - match: \bscale.(left|none|right)\b
+    - match: \b(session|session.(extended|regular|ismarket|ispostmarket|ispremarket))\b
       scope: constant.language.pine
 
-    - match: \bbarmerge\.(gaps_(off|on)|lookahead_(off|on))\b
+    - match: \b(scale).(left|none|right)\b
       scope: constant.language.pine
 
-    - match: \bbarstate\.is(confirmed|first|history|last|new|realtime)\b
+    - match: \b(barmerge)\.(gaps_(off|on)|lookahead_(off|on))\b
       scope: constant.language.pine
 
-    - match: \bcurrency\.(AUD|CAD|CHF|EUR|GBP|HKD|JPY|NOK|NONE|NZD|RUB|SEK|SGD|TRY|USD|ZAR)\b
+    - match: \b(barstate)\.is(confirmed|first|history|last|new|realtime|islastconfirmedhistory)\b
       scope: constant.language.pine
 
-    - match: \blocation\.(abovebar|belowbar|top|bottom|absolute)\b
+    - match: \b(box)\.(all)\b
+      scope: constant.language.pine
+
+    - match: \b(currency)\.(AUD|CAD|CHF|EUR|GBP|HKD|JPY|NOK|NONE|NZD|RUB|SEK|SGD|TRY|USD|ZAR)\b
+      scope: constant.language.pine
+
+    - match: \b(display)\.(all|none)\b
+      scope: constant.language.pine
+
+    - match: \b(label)\.(all)\b
+      scope: constant.language.pine
+
+    - match: \b(math)\.(e|phi|pi|rphi)\b
+      scope: constant.language.pine
+
+    - match: \b(label.style)\_(arrowdown|arrowup|circle|cross|diamond|flag|label_center|label_down|label_left|label_lower_left|label_lower_right|label_upper_left|label_upper_right|none|square|triangledown|triangleup|xcross)\b
+      scope: constant.language.pine
+
+    - match: \b(last_bar)\.(index|time)\b
+      scope: constant.language.pine
+
+    - match: \b(earnings)\.(actual|estimate|standardized)\b
+      scope: constant.language.pine
+
+    - match: \b(extend)\.(both|left|none|right)\b
+
+    - match: \b(location)\.(abovebar|belowbar|top|bottom|absolute)\b
+      scope: constant.language.pine
+
+    - match: \b(line.all)\b
+      scope: constant.language.pine
+
+    - match: \b(linefill.all)\b
+      scope: constant.language.pine
+
+    - match: \b(line.style)\_(arrow_both|arrow_left|arrow_right|dashed|dotted|solid)\b
+      scope: constant.language.pine
+
+    - match: \b(hline.style)\_(dashed|dotted|solid)\b
+      scope: constant.language.pine
+
+    - match: \b(format)\.(inherit|mintick|percent|price|volume)\b
       scope: constant.language.pine
 
     - match: \bshape\.(x(cross)?|(triangle|arrow|label)(up|down)|flag|circle|square|diamond)\b
       scope: constant.language.pine
 
+    - match: \bshape\.(arrowdown|arrowup|circle|cross|diamond|flag|labeldown|labelup|square|triangledown|triangleup)\b
+      scope: constant.language.pine
+
     - match: \bsize\.(auto|huge|large|normal|small|tiny)\b
       scope: constant.language.pine
 
-    - match: \bstrategy\.(cash|closedtrades|commission\.(cash_per_contract|cash_per_order|percent)|direction\.(all|long|short)|equity|eventrades|fixed|grossloss|grossprofit|initial_capital|long|losstrades|max_contracts_held_all|max_contracts_held_long|max_contracts_held_short|max_drawdown|netprofit|oca\.(cancel|none|reduce)|openprofit|opentrades|percent_of_equity|position_avg_price|position_entry_name|position_size|short|wintrades)\b
+    - match: \b(plot.style)\_(area|areabr|circles|columns|cross|histogram|line|linebr|stepline|stepline_diamond)\b
       scope: constant.language.pine
 
-    - match: \bsyminfo\.(mintick|pointvalue|prefix|root|session|timezone)\b
+    - match: \bstrategy\.(cash|closedtrades|commission\.(cash_per_contract|cash_per_order|percent)|direction\.(all|long|short)|equity|eventrades|fixed|grossloss|grossprofit|initial_capital|long|losstrades|max_contracts_held_all|max_contracts_held_long|max_contracts_held_short|max_drawdown|netprofit|oca\.(cancel|none|reduce)|openprofit|opentrades|percent_of_equity|position_avg_price|position_entry_name|position_size|short|wintrades)(account_currency)\b
       scope: constant.language.pine
 
-    - match: \b(aqua|black|silver|gray|white|maroon|red|purple|fuchsia|green|lime|olive|yellow|navy|blue|teal|orange)\b
+    - match: \bsyminfo\.(basecurrency|currency|description|mintick|pointvalue|prefix|root|session|ticker|tickerid|timezone|type)\b
+      scope: constant.language.pine
+
+    - match: \b(color)\.(aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow)\b
+      scope: constant.language.pine
+
+    - match: \b(dividends)\.(gross|net)\b
+      scope: constant.language.pine
+
+    - match: \b(order)\.(ascending|descending)\b
       scope: constant.language.pine
 
     - match: '#[a-fA-F0-9]{6}'
@@ -81,18 +160,29 @@ contexts:
     - match: '\b([0-9]+)\b'
       scope: constant.numeric.pine
 
-  # strings
+    - match: \b(int)\b
+      scope: constant.numeric.integer.pine
 
+    - match: \b(float)\b
+      scope: constant.numeric.float.pine   
+
+  # var
+    - match: \b(var|varip)\b
+      scope: variable.other.pine
+
+  # strings
     - match: ''''
       push: single-quoted-string
     - match: '"'
       push: double-quoted-string
+    - match: \b(string)\b
+      scope: string.pine
 
   # operators
 
-    - match: (\-|\+|\*|/|%)
+    - match: (\-|\+|\*|\/|\%|\*=|\+=|\-=|\/=)
       scope: keyword.operator.arithmetic.pine
-    - match: (==|!=|<=|>=|<|>|\:=)
+    - match: (==|!=|<=|=>|>=|<|>|\:=|%=)
       scope: keyword.operator.comparison.pine
     - match: (\?|\:)
       scope: keyword.operator.ternary.pine
@@ -100,6 +190,13 @@ contexts:
       scope: keyword.operator.logical.pine
     - match: "="
       scope: keyword.operator.assignment.pine
+     
+  # control
+    - match: \b(//@version=5|export|import|series|simple|switch|)\b
+      scope: keyword.control.import.pine
+
+    - match: (|if|else|for|for...in|while)
+      scope: keyword.control.conditional.pine
 
   # functions
 
@@ -110,7 +207,7 @@ contexts:
     - match: '{{identifier_regex}}\s*(?=:?\=)'
       scope: variable.parameter.pine
 
-    - match: ('({{identifier_regex}})\(.*\)\s(=>)\s'|if|else)
+    - match: ('({{identifier_regex}})\(.*\)\s(=>)\s')
       captures:
         1: entity.name.function
         2: keyword.operator.assignment.pine
