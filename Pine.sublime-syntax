@@ -195,7 +195,7 @@ contexts:
     - match: \b(//@version=5|export|import|series|simple|switch|)\b
       scope: keyword.control.import.pine
 
-    - match: (|if|else|for|for...in|while)
+    - match: \b(if|else|for|for...in|while)\b
       scope: keyword.control.conditional.pine
 
   # functions
