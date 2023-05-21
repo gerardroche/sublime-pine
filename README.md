@@ -22,7 +22,7 @@ Search for `Pine`
 
 Press `Enter`
 
-Go to `Menu > Preferences > Color Scheme...` and select Pine.
+Go to `Menu → Preferences → Color Scheme...` and select Pine.
 
 ### Manual installation
 
